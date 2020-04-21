@@ -1,0 +1,48 @@
+#### Hookworm parameter values. 
+
+### Model running parameters.
+repNum	100		Number of repetitions	
+nYears	10		Number of years to run.
+nYearsPostTreat	0	The number of years to run *after treatment* - i.e. post-treatment equilibration time. Will override nYears if specified.
+nHosts	500		Size of definitive host population (N) ## 500
+outputFrequency	12	Nr of times per year to output, spaced regularly. Will override outputEvents if specified.
+outputOffset	0	Otherwise starting at zero, output will be offset by this amount. Negative values are valid (useful eg to output before treatment)
+
+
+### Social structure
+contactAgeBreaks	0 15 25 70		Contact age group breaks (minus sign necessary to include zero age)
+betaValues	1 1 1				Relative contact rates (Beta)
+rhoValues	1 1 1				Rho, contribution to the reservoir by contact age group. 
+
+### Epidemiological parameters. 
+k	0.35			Shape parameter of assumed negative binomial distribution of worms amongst host (k), original value 0.35
+lambda	3	Eggs per gram (lambda)
+R0	9.5	Basic reproductive number (R0)   ## 1.5 for moderate prevalence, 9.5 for high prevalence
+ReservoirDecayRate	30	Reservoir decay rate (decay rate of eggs in the environment)
+sigma	0.5		Worm death rate (sigma) i.e. 1/worm_life_span, same for all development stages
+gamma	0.02	Exponential density dependence of parasite adult stage (gamma) N.B. fecundity parameter z = exp(-gamma)
+
+### Sexual reproduction styles. 
+reproFuncName	epgFertility	## name of function for reproduction (a string).  [Deterministic] ## epgPerPerson
+StochSR	TRUE		## Turn SR on or off in the stochastic model. 	[Stochastic]  ## FALSE
+
+### Treatment parameters. 
+treatmentBreaks	0 2 5 15 70		Minimum age of each treatment group (minus sign necessary to include zero age): Infants; Pre-SAC; SAC; Adults
+coverage	0 0.75 0.75 0		Coverages [0-1]: Infants; Pre-SAC; SAC; Adults. 
+drugEff	0.95					Drug efficacy [0-1]
+treatStart	1				Treatment year start 
+nRounds	20					Number of treatment rounds.	# 5 for annual treatment, 10 for semi-annual treatment over 100 years
+treatInterval	0.5			interval between treatments in years.	# 1 for annual treatment, 0.5 for semi-annual treatment
+skipYear	1	year in a 5-year STH programme that needs to be skipped because of covid-2019 (vary: 0=baseline, i.e. no year skipped, 2, 3, 4, 5)
+
+### High worm burden. 
+highBurdenBreaks	0 5 10 100	## Three categories here. 
+highBurdenValues	20 30 40	## Corresponding values. Using HIGH VALUES from Chan now. 
+
+### Size parameter of negative binomial for KK test
+k_epg	0.35	
+
+### Simulation-specific parameters
+nNodes	8	## number of cores 
+maxStep	0.01923	## max time step for deterministic update of freeliving populations, approx 1/52
+seed	1	## 
